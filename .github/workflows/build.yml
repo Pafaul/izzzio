@@ -101,6 +101,14 @@ jobs:
     needs: [Build-Windows-Distro, Linux-Distro]
     runs-on: ubuntu-latest
     steps:
+      - name: Download Windows distro
+        uses: actions/download-artifact@v1
+        with: 
+          name: iz3node-windows-x64.zip
+      - name: Download Linux distro
+        uses: actions/download-artifact@v1
+        with:
+          name: iz3node-linux-x64.zip
       - name: Publish binaries
         uses: Roang-zero1/github-upload-release-artifacts-action@master
         env:
