@@ -25,13 +25,13 @@ jobs:
         run: |
           cp $(which node) /home/runner/work/izzzio/izzzio/.
           cd /home/runner/work/izzzio/
-          zip -r izzzio.zip izzzio/*
+          zip -r iz3node-linux-x64.zip izzzio/*
 
       - name: Upload Linux distro
         uses: actions/upload-artifact@v1
         with:
           name: iz3node-linux-x64.zip
-          path: /home/runner/work/izzzio/izzzio.zip
+          path: /home/runner/work/izzzio/iz3node-linux-x64.zip
           
   Get-Windows-Node-Files:
     runs-on: windows-latest
@@ -74,7 +74,7 @@ jobs:
         with: 
           name: win-node-modules
 
-      - name: extract files
+      - name: Extract files
         shell: bash
         run: |
           echo $(pwd)
@@ -89,13 +89,13 @@ jobs:
         shell: bash
         run: |
           cd /home/runner/work/izzzio/
-          zip -r izzzio.zip izzzio/*
+          zip -r iz3node-windows-x64.zip izzzio/*
 
       - name: Upload Windows distro
         uses: actions/upload-artifact@v1
         with: 
           name: iz3node-windows-x64.zip
-          path: /home/runner/work/izzzio/izzzio.zip
+          path: /home/runner/work/izzzio/iz3node-windows-x64.zip
 
   Publish-Binaries:
     needs: [Build-Windows-Distro, Linux-Distro]
@@ -110,7 +110,7 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: iz3node-linux-x64.zip
-          
+
       - name: Publish binaries
         uses: Roang-zero1/github-upload-release-artifacts-action@master
         env:
