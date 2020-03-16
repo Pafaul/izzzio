@@ -116,8 +116,6 @@ jobs:
         run: |
           TAG=${{github.ref}}
           TAG=${TAG##*/}
-          WINDOWS_DISTRO=iz3node-windows-${TAG}-x64.zip
-          LINUX_DISTRO=iz3node-linux-${TAG}-x64.zip
           mv iz3node-windows{-,_${TAG}-}x64.zip
           mv iz3node-linux{-,_${TAG}-}x64.zip
 
