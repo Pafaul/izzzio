@@ -116,7 +116,7 @@ jobs:
         env: 
           GITHUB_TAG=${{github.ref}}
         run: |
-          TAG=${{GITHUB_TAG##*/}}
+          TAG=${GITHUB_TAG##*/}
           WINDOWS_DISTRO=iz3node-windows-${TAG}-x64.zip
           LINUX_DISTRO=iz3node-linux-${TAG}-x64.zip
           mv iz3node-windows-{,${TAG}-}x64.zip
