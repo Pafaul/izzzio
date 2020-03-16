@@ -126,5 +126,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: 'iz3node-windows-*-x64.zip iz3node-linux-*-x64.zip'
+          args: 'iz3node-windows_*-x64.zip iz3node-linux_*-x64.zip'
 
