@@ -110,11 +110,21 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: iz3node-linux-x64.zip
+      
+      - name: Rename with release tag
+        shell: bash
+        run: |
+          TAG=${{github.ref}}
+          TAG=${TAG##.*/}
+          WINDOWS_DISTRO=iz3node-windows-${TAG}-x64.zip
+          LINUX_DISTRO=iz3node-linux-${TAG}-x64.zip
+          mv iz3node-windows-{,${TAG}-}x64.zip
+          mv iz3node-linux-{,${TAG}-}x64.zip
 
       - name: Publish binaries
         uses: Roang-zero1/github-upload-release-artifacts-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: 'iz3node-windows-x64.zip iz3node-linux-x64.zip'
+          args: 'iz3node-windows-*-x64.zip iz3node-linux-*-x64.zip'
 
