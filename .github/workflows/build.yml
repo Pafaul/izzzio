@@ -8,6 +8,12 @@ jobs:
   Linux-Distro:
     runs-on: ubuntu-latest
     steps:
+      - name: Rename with release tag
+        shell: bash
+        run: |
+          TAG=${{github.ref}}
+          TAG=${TAG##*/}
+          echo $TAG
       - uses: actions/checkout@v1
       - name: Setup Node
         uses: actions/setup-node@v1
