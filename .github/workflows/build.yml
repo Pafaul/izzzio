@@ -32,6 +32,14 @@ jobs:
         with:
           name: iz3node-linux-x64.zip
           path: /home/runner/work/izzzio/iz3node-linux-x64.zip
+
+      - name: Rename with release tag
+        shell: bash
+        env: 
+          GITHUB_TAG=${{github.ref}}
+        run: |
+          TAG=${GITHUB_TAG##*/}
+          echo ${TAG}
           
   Get-Windows-Node-Files:
     runs-on: windows-latest
@@ -113,10 +121,9 @@ jobs:
       
       - name: Rename with release tag
         shell: bash
-        env: 
-          GITHUB_TAG=${{github.ref}}
         run: |
-          TAG=${GITHUB_TAG##*/}
+          TAG=${{github.ref}}
+          TAG=${TAG##*/}
           WINDOWS_DISTRO=iz3node-windows-${TAG}-x64.zip
           LINUX_DISTRO=iz3node-linux-${TAG}-x64.zip
           mv iz3node-windows-{,${TAG}-}x64.zip
